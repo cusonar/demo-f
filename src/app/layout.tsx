@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { ConfigProvider } from "antd";
+import koKR from "antd/lib/locale/ko_KR";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="ko">
+      <AntdRegistry>
+        <ConfigProvider locale={koKR}>
+          <body className={inter.className}>{children}</body>
+        </ConfigProvider>
+      </AntdRegistry>
     </html>
   );
 }
